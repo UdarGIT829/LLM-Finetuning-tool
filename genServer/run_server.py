@@ -4,14 +4,14 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-models = [r"models\Llama-2-13B-chat-GPTQ"]
+models = ["models/Llama-2-13B-chat-GPTQ","/home/yubai03/2023-Chatbot-Proj/text-generation-webui-1.6.1/models/TheBloke_falcon-40b-instruct-GPTQ"]
 model_name_or_path = models[0]
 
 # To use a different branch, change revision
 # For example: revision="main"
 model = AutoModelForCausalLM.from_pretrained(model_name_or_path,
                                              device_map="auto",
-                                             trust_remote_code=False,
+                                             trust_remote_code=True,
                                              revision="main")
 
 tokenizer = AutoTokenizer.from_pretrained(model_name_or_path, use_fast=True)
